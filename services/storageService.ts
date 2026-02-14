@@ -1,5 +1,4 @@
-
-import { ChatSession, UserProfile } from "../types.ts";
+import { ChatSession, UserProfile } from "../types";
 
 const CHATS_KEY = 'void_ai_chats';
 const PROFILE_KEY = 'void_ai_profile';

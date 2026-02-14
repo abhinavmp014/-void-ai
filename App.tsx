@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ModelType, Message, ChatSession, UserProfile, GroundingSource } from './types.ts';
-import { MODELS, CREDIT_RULES } from './constants.ts';
-import { getAIResponse, generateImage, getAIResponseStream } from './services/geminiService.ts';
-import { loadChats, saveChats, loadProfile, saveProfile } from './services/storageService.ts';
-import Sidebar from './components/Sidebar.tsx';
-import MessageContent from './components/MessageContent.tsx';
+import { ModelType, Message, ChatSession, UserProfile, GroundingSource } from './types';
+import { MODELS, CREDIT_RULES } from './constants';
+import { getAIResponse, generateImage, getAIResponseStream } from './services/geminiService';
+import { loadChats, saveChats, loadProfile, saveProfile } from './services/storageService';
+import Sidebar from './components/Sidebar';
+import MessageContent from './components/MessageContent';
 
 declare global {
   interface AIStudio {
@@ -218,7 +218,6 @@ const App: React.FC = () => {
   };
 
   const currentSession = sessions.find(s => s.id === currentSessionId);
-  const isArchitectActive = forceArchitectMode || input.toLowerCase().includes('generate') || input.toLowerCase().includes('website') || input.toLowerCase().includes('build');
 
   return (
     <div className="flex h-screen bg-[#050508] text-gray-200 overflow-hidden font-sans selection:bg-indigo-500/30">

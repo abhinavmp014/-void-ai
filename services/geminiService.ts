@@ -1,8 +1,8 @@
-import { GoogleGenAI, GenerateContentResponse, Type } from "@google/genai";
-import { ULTRA_CODE_PROMPT } from "../constants.ts";
-import { ModelType, GroundingSource } from "../types.ts";
+import { GoogleGenAI, Type } from "@google/genai";
+import { ULTRA_CODE_PROMPT } from "../constants";
+import { ModelType, GroundingSource } from "../types";
 
-const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY });
+const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 
 const getModelName = (modelId: ModelType, isCodeRequest: boolean): string => {
   if (isCodeRequest) {
@@ -112,11 +112,15 @@ export const generateImage = async (prompt: string) => {
       }
     });
 
-    for (const candidate of response.candidates || []) {
-      for (const part of candidate.content.parts) {
-        if (part.inlineData) {
-          const base64EncodeString: string = part.inlineData.data;
-          return `data:image/png;base64,${base64EncodeString}`;
+    const candidates = response.candidates || [];
+    for (const candidate of candidates) {
+      const content = candidate.content;
+      if (content && content.parts) {
+        for (const part of content.parts) {
+          if (part.inlineData && part.inlineData.data) {
+            const base64EncodeString: string = part.inlineData.data;
+            return `data:image/png;base64,${base64EncodeString}`;
+          }
         }
       }
     }

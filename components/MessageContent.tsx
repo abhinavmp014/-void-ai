@@ -1,7 +1,6 @@
-
 import React from 'react';
-import CodeBlock from './CodeBlock.tsx';
-import { GroundingSource } from '../types.ts';
+import CodeBlock from './CodeBlock';
+import { GroundingSource } from '../types';
 
 interface MessageContentProps {
   content: string;
