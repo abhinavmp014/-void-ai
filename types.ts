@@ -1,4 +1,3 @@
-
 export type ModelType = 'void-4' | 'gpt-4' | 'claude-3-5' | 'gemini-pro';
 
 export interface Model {
@@ -37,18 +36,4 @@ export interface UserProfile {
   name: string;
   credits: number;
   tier: 'free' | 'pro';
-}
-
-// Added MathData interface to resolve the import error in components/MathRenderer.tsx
-export interface MathData {
-  equations: string[];
-  steps: {
-    title: string;
-    explanation: string;
-    latex?: string;
-  }[];
-  graphData?: {
-    name: string;
-    points: { x: number; y: number }[];
-  }[];
 }

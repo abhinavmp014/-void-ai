@@ -44,15 +44,13 @@
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     .animate-float { animation: float 5s ease-in-out infinite; }
   </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom/": "https://esm.sh/react-dom@19.0.0/",
-    "react/": "https://esm.sh/react@19.0.0/",
-    "@google/genai": "https://esm.sh/@google/genai@1.41.0",
-    "recharts": "https://esm.sh/recharts@2.12.7",
-    "katex": "https://esm.sh/katex@^0.16.28",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.41.0",
     "vite": "https://esm.sh/vite@^7.3.1",
     "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4"
   }
@@ -61,6 +59,22 @@
 </head>
 <body>
   <div id="root"></div>
-  <script type="module" src="index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+  <script>
+    // Detect if opened via file:// protocol and show a warning
+    if (window.location.protocol === 'file:') {
+      const root = document.getElementById('root');
+      root.innerHTML = `
+        <div style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #050508; color: #6366f1; font-family: sans-serif; text-align: center; padding: 20px;">
+          <h1 style="font-size: 2rem; margin-bottom: 20px;">Local Server Required</h1>
+          <p style="color: #94a3b8; max-width: 500px; line-height: 1.6;">
+            Void AI Architect Edition requires a local server to run. 
+            Browsers block modern web modules on local files for security.<br><br>
+            Please run <strong>npm run dev</strong> and open the provided URL.
+          </p>
+        </div>
+      `;
+    }
+  </script>
 </body>
 </html>
