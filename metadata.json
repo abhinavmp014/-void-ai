@@ -1,0 +1,8 @@
+{
+  "name": "Void AI",
+  "description": "An advanced AI chat platform featuring multi-model support, a credit system, and Void AI Study X for visual mathematical equation rendering and graphing.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
