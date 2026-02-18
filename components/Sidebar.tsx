@@ -9,8 +9,6 @@ interface SidebarProps {
   profile: UserProfile;
   isOpen: boolean;
   onClose: () => void;
-  hasCustomKey?: boolean;
-  onSwitchKey?: () => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ 
@@ -20,9 +18,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   onNewChat,
   profile,
   isOpen,
-  onClose,
-  hasCustomKey = false,
-  onSwitchKey
+  onClose
 }) => {
   const sidebarClasses = `
     fixed inset-y-0 left-0 z-50 w-72 bg-[#0b0b0f] border-r border-gray-800 flex flex-col transition-transform duration-300 ease-in-out md:relative md:translate-x-0
@@ -95,23 +91,6 @@ const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         <div className="p-4 border-t border-gray-800/50 bg-gray-900/10 space-y-4">
-          <button 
-            onClick={onSwitchKey}
-            className="w-full flex items-center justify-between p-3 rounded-2xl bg-gray-900/60 border border-gray-800/50 hover:border-indigo-500/30 transition-all text-left group"
-          >
-            <div className="flex flex-col gap-0.5">
-              <span className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Neural Link</span>
-              <span className={`text-[10px] font-bold ${hasCustomKey ? 'text-indigo-400' : 'text-green-500'}`}>
-                {hasCustomKey ? 'CUSTOM SIGNATURE' : 'SHARED CORE'}
-              </span>
-            </div>
-            <div className={`p-1.5 rounded-lg bg-gray-800 group-hover:bg-indigo-600/20 group-hover:text-indigo-400 transition-colors`}>
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-              </svg>
-            </div>
-          </button>
-
           <div className="flex items-center gap-3 p-2 rounded-2xl bg-gray-900/40 border border-gray-800/50 shadow-inner">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center text-indigo-400 border border-indigo-500/20 font-bold">
               {profile.name[0]}
@@ -120,9 +99,9 @@ const Sidebar: React.FC<SidebarProps> = ({
               <div className="text-sm font-bold text-gray-200 truncate">{profile.name}</div>
               <div className="flex items-center gap-1.5 mt-0.5">
                 <div className="h-1.5 w-full bg-gray-800 rounded-full overflow-hidden">
-                   <div className="h-full bg-indigo-500 rounded-full transition-all duration-1000" style={{ width: `${Math.min(100, (profile.credits / 20) * 100)}%` }}></div>
+                   <div className="h-full bg-indigo-500 rounded-full transition-all duration-1000" style={{ width: `100%` }}></div>
                 </div>
-                <span className="text-[10px] text-indigo-400 font-bold whitespace-nowrap">{profile.credits} Energy</span>
+                <span className="text-[10px] text-indigo-400 font-bold whitespace-nowrap">Gemini Powered</span>
               </div>
             </div>
           </div>

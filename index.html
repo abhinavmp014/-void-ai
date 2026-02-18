@@ -2,55 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VOID AI - Premium Neural Core</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>VOID AI - High Speed Core</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --void-bg: #050508;
       --void-accent: #6366f1;
-      --void-surface: #0f0f17;
-      --void-border: rgba(255, 255, 255, 0.08);
     }
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--void-bg);
-      color: #f8fafc;
-      margin: 0;
-      overflow: hidden;
-    }
-    .custom-scrollbar::-webkit-scrollbar { width: 5px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 10px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--void-accent); }
 
-    .dot-flashing {
-      position: relative;
-      width: 6px;
-      height: 6px;
-      border-radius: 5px;
-      background-color: #6366f1;
-      animation: dot-flashing 1s infinite linear alternate;
-      animation-delay: .5s;
+    * { 
+      -webkit-tap-highlight-color: transparent; 
+      box-sizing: border-box; 
     }
-    .dot-flashing::before, .dot-flashing::after {
-      content: ''; display: inline-block; position: absolute; top: 0;
-    }
-    .dot-flashing::before { left: -12px; width: 6px; height: 6px; border-radius: 5px; background-color: #6366f1; animation: dot-flashing 1s infinite alternate; animation-delay: 0s; }
-    .dot-flashing::after { left: 12px; width: 6px; height: 6px; border-radius: 5px; background-color: #6366f1; animation: dot-flashing 1s infinite alternate; animation-delay: 1s; }
-    @keyframes dot-flashing { 0% { background-color: #6366f1; } 50%, 100% { background-color: rgba(99, 102, 241, 0.2); } }
     
+    html, body {
+      background-color: var(--void-bg);
+      margin: 0; padding: 0;
+      overflow-x: hidden;
+      width: 100%; height: 100%;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #e2e8f0;
+    }
+
+    #root { 
+      width: 100%; 
+      height: 100%; 
+      background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.15); border-radius: 10px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.3); }
+
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    .animate-float { animation: float 5s ease-in-out infinite; }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    
+    pre { font-family: 'JetBrains Mono', monospace; }
+    
+    input, textarea { font-size: 16px !important; }
+    @media (min-width: 768px) { input, textarea { font-size: 14px !important; } }
+
+    .overflow-wrap-anywhere {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
   </style>
 <script type="importmap">
 {
   "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
     "react": "https://esm.sh/react@^19.2.4",
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
     "@google/genai": "https://esm.sh/@google/genai@^1.41.0",
+    "recharts": "https://esm.sh/recharts@^3.7.0",
     "vite": "https://esm.sh/vite@^7.3.1",
     "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4"
   }
@@ -60,21 +67,5 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
-  <script>
-    // Detect if opened via file:// protocol and show a warning
-    if (window.location.protocol === 'file:') {
-      const root = document.getElementById('root');
-      root.innerHTML = `
-        <div style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #050508; color: #6366f1; font-family: sans-serif; text-align: center; padding: 20px;">
-          <h1 style="font-size: 2rem; margin-bottom: 20px;">Local Server Required</h1>
-          <p style="color: #94a3b8; max-width: 500px; line-height: 1.6;">
-            Void AI Architect Edition requires a local server to run. 
-            Browsers block modern web modules on local files for security.<br><br>
-            Please run <strong>npm run dev</strong> and open the provided URL.
-          </p>
-        </div>
-      `;
-    }
-  </script>
 </body>
 </html>
