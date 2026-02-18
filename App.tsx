@@ -182,7 +182,7 @@ const App: React.FC = () => {
             <div className="h-full flex flex-col justify-center max-w-2xl mx-auto w-full pb-10">
               <div className="mb-8 text-center">
                 <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tighter uppercase italic">
-                  Hello! <span className="text-indigo-500 text-shadow-glow">How can I help?</span>
+                  Hello, {profile.name}! <span className="text-indigo-500 text-shadow-glow">How can I help?</span>
                 </h2>
                 <div className="grid grid-cols-2 gap-3 mt-8">
                   <QuickAction icon="🌱" title="Learn Something" prompt="Can you explain how a sunset works in a simple way?" description="Simple explanations" />
