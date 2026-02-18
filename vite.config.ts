@@ -7,9 +7,14 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     define: {
-      // Ensure the key is captured from either .env (env.API_KEY) or system process
-      // and stringified so it can be literally replaced in the source code.
+      // Prioritizes Netlify environment variables (process.env.API_KEY) 
+      // or local .env variables during development.
       'process.env.API_KEY': JSON.stringify(env.API_KEY || process.env.API_KEY || "")
+    },
+    build: {
+      outDir: 'dist',
+      sourcemap: false,
+      minify: 'esbuild'
     }
   };
 });
